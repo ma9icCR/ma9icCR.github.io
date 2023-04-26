@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ma9icCR</title><meta name="description"><meta name="author" content="Ma9icCR"><meta name="copyright" content="Ma9icCR"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ma9iccr.github.io/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="Ma9icCR"><meta property="og:url" content="https://ma9iccr.github.io/"><meta property="og:site_name" content="Ma9icCR"><meta property="og:description"><meta property="og:image" content="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/avatar.png"><meta property="article:published_time" content="2023-04-26T01:37:13.125Z"><meta property="article:modified_time" content="2023-04-26T01:37:13.125Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2023-04-26 09:37:13'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Image</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/navigate/"><i class="fa-fw fas fa-navigate"></i><span> Navigate</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Ma9icCR</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Image</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/navigate/"><i class="fa-fw fas fa-navigate"></i><span> Navigate</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">Ma9icCR</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ma9iccr" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ma9iccr@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020-07/MyDaily/" title="MyDaily">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/waterfalls.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyDaily"></a></div><div class="recent-post-info"><a class="article-title" href="/2020-07/MyDaily/" title="MyDaily">MyDaily</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><time class="post-meta__date" title="发表于 2020-07-09 21:14:17"><i class="far fa-calendar-alt"></i>2020-07-09</time></div><div class="content">
+  cd3c554b137f3c70f540f862c47fd9e3adbe107ce777439fef2107dd7a8503226d50c2df42480ccb3768e26dce202efc26558189ab81fdcd67a3ed48941ca659e3f2c05dfad681b409693174cfe5d9132d6101d0697fdc9248b3bfaf40b422b6cd0b47eb1610374657b856eca139aaf98055649b888ef8eeb4d4656ead6c8f666eb18ffeb34bad0d789714fbe8f76c25944adf35fce2ac8707f7d5e52bcd9612bd4a471eb53d151356f1556eb5dcb3defaed4a4acdbcb6f8df1a13582e706a164ad7907b3e7d9687016eb52ce5660350724cecadddbdd3a7c43661f7243ac0452bacd6c5b7d9161e321937b967873e1ec61411761b48ea37c ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022-07/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%88%B0%E6%94%BE%E5%BC%83/" title="C语言学习到放弃">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/OIP-C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C语言学习到放弃"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-07/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%88%B0%E6%94%BE%E5%BC%83/" title="C语言学习到放弃">C语言学习到放弃</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-07-21 08:26:41"><i class="far fa-calendar-alt"></i>2022-07-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/programing/">programing</a></span></div><div class="content">C语言学习到放弃数据类型C 中的类型可分为以下几种：
+
+
+
+序号
+类型与描述
+
+
+
+1
+基本类型： 它们是算术类型，包括两种类型：整数类型和浮点类型。
+
+
+2
+枚举类型： 它们也是算术类型，被用来定义在程序中只能赋予其一定的离散整数值的变量。
+
+
+3
+void 类型： 类型说明符 void 表明没有可用的值。
+
+
+4
+派生类型： 它们包括：指针类型、数组类型、结构类型、共用体类型和函数类型。
+
+
+整数类型
+
+
+类型
+存储大小
+值范围
+
+
+
+char
+1 字节
+-128 到 127 或 0 到 255
+
+
+unsigned char
+1 字节
+0 到 255
+
+
+signed char
+1 字节
+-128 到 127
+
+
+int
+2 或 4 字节
+-32,768 到 32,767 或 -2,147,483,648 到 2,147,483,647
+
+
+unsigned int
+2 或 4 字节
+0 到 65,535 或 0 到 4,294,967,295
+
+
+short
+2 字节
+-32,768 到 32,767
+
+
+unsigned short
+2 字节
+0 到 65,535
+
+
+lon ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/" title="pwn题如何配置和靶机一样的环境">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="pwn题如何配置和靶机一样的环境"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/" title="pwn题如何配置和靶机一样的环境">pwn题如何配置和靶机一样的环境</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-05-27 08:33:18"><i class="far fa-calendar-alt"></i>2022-05-27</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="content">pwn题如何配置和靶机一样的环境转载学习记录：
+Nameless_a
+【保姆级教程】pwn题如何配置和靶机一样的环境-Pwn-看雪论坛-安全社区|安全招聘|bbs.pediy.com
+二进制文件+libc篇准备工作先需要安装两个工具
+patchelf123456789sudo apt-get install autoconf automake libtoolgit clone https://github.com/NixOS/patchelf.gitcd patchelf./bootstrap.sh./configuremakemake checksudo make install cd ..
+
+glibc-all-in-one1git clone https://github.com/matrix1001/glibc-all-in-one
+
+记得下下来cd到glibc-master目录的时候先运行一下update_list，即：
+1./update_list
+
+如果发现有些时候list里面的版本下不了了，也可以用这个更新一下列表（然后你就发现绝版了）
+具体操作(1)先对libc文件来 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022-05/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%9A%84pwn%E9%A2%98%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="从0开始的pwn题环境配置">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从0开始的pwn题环境配置"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-05/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%9A%84pwn%E9%A2%98%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="从0开始的pwn题环境配置">从0开始的pwn题环境配置</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-05-27 08:15:17"><i class="far fa-calendar-alt"></i>2022-05-27</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="content">从0开始的pwn题环境配置转载学习记录：
+Nameless_a
+【保姆级教程】pwn题如何配置和靶机一样的环境-Pwn-看雪论坛-安全社区|安全招聘|bbs.pediy.com
+设置root权限密码1sudo passwd root
+
+后面用的sudo指令需要输入的密码就是这里设定的
+遇到所有的“Permission denied”的问题都是没有在root模式下
+换源换国内的源能够提高我们的下载速度也能避免翻墙（如果能够翻墙的话最好），目前主要有“阿里”、“清华”和”中科大“三个源
+1.阿里：
+12345678910deb http://mirrors.aliyun.com/ubuntu/bionic main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/bionic-security main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/bionic-updates main restricted univ ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022-04/KeepTrying/" title="KeepTrying">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/fighting.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KeepTrying"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-04/KeepTrying/" title="KeepTrying">KeepTrying</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-04-25 16:41:31"><i class="far fa-calendar-alt"></i>2022-04-25</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/learning/">learning</a></span></div><div class="content">Keep Trying挖洞基础CPU的设计与实现CMU 18-447 【CMU-18-447(中英字幕)】计算机体系结构
+编译器的设计与实现Stanford CS143 CS143: Compilers (stanford.edu)
+操作系统的设计与实现MIT 6.828 6.828 / Fall 2018 (mit.edu)
+漏洞挖掘与利用快速入门——CTFCTFs CTFs · GitHub
+Wargames
+pwnable.kr pwnable.kr
+
+smashthestack.org SmashTheStack Wargaming Network
+
+
+学习历史漏洞
+CVES
+
+挖掘新漏洞逆向分析+源码审计
+快速逆向与代码理解
+
+对漏洞的感觉
+
+
+模糊测试
+测试框架
+
+样例生成的想法
+
+
+实战—目标网络协议的实现
+HTTP/SMB/DNS/UPnP Server
+
+脚本引擎
+JavaScript Engine
+ActionScript Engine
+PHP/Java Sandbox Escape
+内核
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022-04/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Code/" title="PWN入门到入狱-Code">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PWN入门到入狱-Code"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-04/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Code/" title="PWN入门到入狱-Code">PWN入门到入狱-Code</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-04-15 11:33:02"><i class="far fa-calendar-alt"></i>2022-04-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="content">PWN入门到入狱-Codeleak_canary+libc12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152# -*- coding: utf-8 -*-from pwn import *from LibcSearcher import *# p=remote('node4.buuoj.cn',28688)p=process('./babystack')elf=ELF('./babystack')context.log_level='debug'#泄露canaryp.sendlineafter("&gt;&gt;",'1')payload='a'*(0x80+8)p.sendline(payload)p.sendlineafter('&gt;&gt;','2')p.recvuntil('a\n')canary=u64(p.recv(7).rjust(8,b'\x00'))log.info(hex(canary))pop_rdi=0x400a93pu ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Integer/" title="PWN入门到入狱-Integer">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PWN入门到入狱-Integer"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Integer/" title="PWN入门到入狱-Integer">PWN入门到入狱-Integer</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-03-28 10:56:04"><i class="far fa-calendar-alt"></i>2022-03-28</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="content">PWN入门到入狱-Integer关于整数的异常情况主要有三种：
+
+溢出
+只有有符号数才会发生溢出。有符号数最高位表示符号，在两正或两负相加时，有可能改变符号位的值，产生溢出
+溢出标志 OF 可检测有符号数的溢出
+
+
+回绕
+无符号数 0-1 时会变成最大的数，如 1 字节的无符号数会变为 255，而 255+1 会变成最小数 0。
+进位标志 CF 可检测无符号数的回绕
+
+
+截断
+将一个较大宽度的数存入一个宽度小的操作数中，高位发生截断
+
+
+
+有符号整数溢出
+上溢出
+
+1234int i;i = INT_MAX;  // 2 147 483 647i++;printf("i = %d\n", i);  // i = -2 147 483 648
+
+
+下溢出
+
+123i = INT_MIN;  // -2 147 483 648i--;printf("i = %d\n", i);  // i = 2 147 483 647
+
+无符号数回绕涉及无符号数的计算永远不会溢出，因为不能用结果为无符号整数表示的结果值被该类型可以表示的最大值加 1 之和取模减（reduced modulo）。因为回绕， ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Heap/" title="PWN入门到入狱-Heap">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PWN入门到入狱-Heap"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Heap/" title="PWN入门到入狱-Heap">PWN入门到入狱-Heap</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-03-28 10:52:56"><i class="far fa-calendar-alt"></i>2022-03-28</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="content">PWN入门到入狱-Heap堆的漏洞利用核心就是劫持堆分配的位置，使程序把堆分配到我们指定的地址然后填入数据，造成代码与数据的混淆。
+堆溢出堆溢出是指程序向某个堆块中写入的字节数超过了堆块本身可使用的字节数（之所以是可使用而不是用户申请的字节数，是因为堆管理器会对用户所申请的字节数进行调整，这也导致可利用的字节数都不小于用户申请的字节数），因而导致了数据溢出，并覆盖到物理相邻的高地址的下一个堆块。
+堆溢出漏洞发生的基本前提是
+
+程序向堆上写入数据。
+写入的数据大小没有被良好地控制。
+
+一般来说，我们利用堆溢出的策略是
+1.覆盖与其物理相邻的下一个 chunk的内容。
+
+prev_size
+size，主要有三个比特位，以及该堆块真正的大小。
+NON_MAIN_ARENA
+IS_MAPPED
+PREV_INUSE
+the True chunk size
+
+
+chunk content，从而改变程序固有的执行流。
+
+2.利用堆中的机制（如 unlink 等 ）来实现任意地址写入（ Write-Anything-Anywhere）或控制堆块中的内容等效果，从而来控制程序的执行流。
+堆溢出中比较重 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Format/" title="PWN入门到入狱-Format">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PWN入门到入狱-Format"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Format/" title="PWN入门到入狱-Format">PWN入门到入狱-Format</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-03-28 10:52:48"><i class="far fa-calendar-alt"></i>2022-03-28</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="content">PWN入门到入狱-Format格式化输出函数和格式字符串
+函数
+
+1234567#include &lt;stdio.h&gt;int printf(const char *format, ...);int fprintf(FILE *stream, const char *format, ...);int dprintf(int fd, const char *format, ...);int sprintf(char *str, const char *format, ...);int snprintf(char *str, size_t size, const char *format, ...);
+
+
+转换指示符
+
+
+
+
+字符
+类型
+使用
+
+
+
+d
+4-byte
+Integer
+
+
+u
+4-byte
+Unsigned Integer
+
+
+x
+4-byte
+Hex
+
+
+s
+4-byte ptr
+String
+
+
+c
+1-byte
+Character
+
+
+
+长度
+
+
+
+
+字符
+类型
+使用
+
+
+
+hh
+1-byte
+char
+
+
+h
+2-byte
+short int
+
+
+l
+4-by ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Stack/" title="PWN入门到入狱-Stack">     <img class="post_bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PWN入门到入狱-Stack"></a></div><div class="recent-post-info"><a class="article-title" href="/2022-03/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Stack/" title="PWN入门到入狱-Stack">PWN入门到入狱-Stack</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2022-03-28 10:52:31"><i class="far fa-calendar-alt"></i>2022-03-28</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="content">PWN入门到入狱-StackELF有以下几种方法操纵ELF:
+
+symbols[&#39;a_function&#39;] 找到 a_function 的地址
+got[&#39;a_function&#39;] 找到 a_function的 got
+plt[&#39;a_function&#39;] 找到 a_function 的 plt
+next(elf.search(&quot;some_characters&quot;)) 找到包含 some_characters（字符串，汇编代码或者某个数值）的地址.
+
+one_gadget
+概要
+
+one_gadget是libc中存在的一些执行execve(&quot;/bin/sh&quot;, NULL, NULL)的片段，当可以泄露libc地址，并且可以知道libc版本的时候，可以使用此方法来快速控制指令寄存器开启shell。
+相比于system(&quot;/bin/sh&quot;)，这种方式更加方便，不用控制RDI、RSI、RDX等参数。运用于不利构造参数的情况。
+
+安装与使用方法
+
+首先需要安装Ruby（Ruby &lt; 2. ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Ma9icCR</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">33</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">标签</div><div class="length_num">10</div></a></div><div class="card-info-data-item is-center">     <a href="/categories"><div class="headline">分类</div><div class="length_num">7</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" type="button" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ma9iccr" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ma9iccr@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2022-07/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%88%B0%E6%94%BE%E5%BC%83/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/OIP-C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="C语言学习到放弃" alt="C语言学习到放弃"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022-07/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%88%B0%E6%94%BE%E5%BC%83/" title="C语言学习到放弃">C语言学习到放弃</div><time class="aside-post_meta post-meta__date" title="发表于 2022-07-21 08:26:41">2022-07-21</time></div></a></div><div class="aside-recent-post"><a href="/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="pwn题如何配置和靶机一样的环境" alt="pwn题如何配置和靶机一样的环境"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/" title="pwn题如何配置和靶机一样的环境">pwn题如何配置和靶机一样的环境</div><time class="aside-post_meta post-meta__date" title="发表于 2022-05-27 08:33:18">2022-05-27</time></div></a></div><div class="aside-recent-post"><a href="/2022-05/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%9A%84pwn%E9%A2%98%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="从0开始的pwn题环境配置" alt="从0开始的pwn题环境配置"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022-05/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%9A%84pwn%E9%A2%98%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="从0开始的pwn题环境配置">从0开始的pwn题环境配置</div><time class="aside-post_meta post-meta__date" title="发表于 2022-05-27 08:15:17">2022-05-27</time></div></a></div><div class="aside-recent-post"><a href="/2022-04/KeepTrying/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/fighting.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="KeepTrying" alt="KeepTrying"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022-04/KeepTrying/" title="KeepTrying">KeepTrying</div><time class="aside-post_meta post-meta__date" title="发表于 2022-04-25 16:41:31">2022-04-25</time></div></a></div><div class="aside-recent-post"><a href="/2022-04/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Code/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="PWN入门到入狱-Code" alt="PWN入门到入狱-Code"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022-04/PWN%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E7%8B%B1-Code/" title="PWN入门到入狱-Code">PWN入门到入狱-Code</div><time class="aside-post_meta post-meta__date" title="发表于 2022-04-15 11:33:02">2022-04-15</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CVE/"><span class="card-category-list-name">CVE</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IoT/"><span class="card-category-list-name">IoT</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/books/"><span class="card-category-list-name">books</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/learning/"><span class="card-category-list-name">learning</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/programing/"><span class="card-category-list-name">programing</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/pwn/"><span class="card-category-list-name">pwn</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/tools/"><span class="card-category-list-name">tools</span><span class="card-category-list-count">2</span></a></li>
+                       
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Black-Hat-Python-2nd/" style="font-size: 22px; color: #99a9bf">Black_Hat_Python_2nd</a> <a href="/tags/CVE/" style="font-size: 17.5px; color: #999da3">CVE</a> <a href="/tags/IoT/" style="font-size: 16px; color: #999">IoT</a> <a href="/tags/Linux/" style="font-size: 19px; color: #99a1ac">Linux</a> <a href="/tags/MyDaily/" style="font-size: 16px; color: #999">MyDaily</a> <a href="/tags/Windows/" style="font-size: 16px; color: #999">Windows</a> <a href="/tags/learning/" style="font-size: 16px; color: #999">learning</a> <a href="/tags/programing/" style="font-size: 16px; color: #999">programing</a> <a href="/tags/pwn/" style="font-size: 20.5px; color: #99a5b6">pwn</a> <a href="/tags/tools/" style="font-size: 19px; color: #99a1ac">tools</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">Ju2022/7/212022 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">Ju2022/5/272022 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">Ju2022/4/252022 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">Ju2022/3/282022 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">Ju2021/7/232021 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/06/"><span class="card-archive-list-date">Ju2021/6/282021 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/04/"><span class="card-archive-list-date">Ju2021/4/202021 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/01/"><span class="card-archive-list-date">Ju2021/1/42021 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives">
+              <span>查看更多</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章数目 :</div><div class="webinfo-article-count">33</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">已运行时间 :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" publish_date="07/09/2020 00:00:00">     </div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站访客数 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站总访问量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Ma9icCR</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleType = function () {
+  loadScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js',function () {
+      var subtitleEffect = true
+      jinrishici.load(function (result) {
+        if (subtitleEffect) {
+          var sub = "今日事，今日毕,记录生活，记录成长,要学会沟通的艺术,Keep trying，never give up!,Never put off till tomorrow what you can do today".length == 0 ? new Array() : "今日事，今日毕,记录生活，记录成长,要学会沟通的艺术,Keep trying，never give up!,Never put off till tomorrow what you can do today".split(',')
+          var content = result.data.content
+          var both = sub.unshift(content)
+          var typed = new Typed('#subtitle', {
+            strings: sub,
+            startDelay: 300,
+            typeSpeed: 150,
+            loop: true,
+            backSpeed: 50,
+          })
+        } else {
+          document.getElementById('subtitle').innerHTML = result.data.content
+        }
+      })
+    }
+  )
+}
+window.addEventListener('load', subtitleType)
+</script><script>'use strict';'serviceWorker'in navigator&&navigator.serviceWorker.register('service-worker.js').then(function(a){a.onupdatefound=function(){var b=a.installing;b.onstatechange=function(){switch(b.state){case'installed':navigator.serviceWorker.controller?console.log('New or updated content is available.'):console.log('Content is now available offline!');break;case'redundant':console.error('The installing service worker became redundant.');}}}}).catch(function(a){console.error('Error during service worker registration:',a)});
+</script></body></html>

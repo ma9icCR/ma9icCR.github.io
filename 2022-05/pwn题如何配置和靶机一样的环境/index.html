@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>pwn题如何配置和靶机一样的环境 | Ma9icCR</title><meta name="description" content="pwn题如何配置和靶机一样的环境转载学习记录： Nameless_a 【保姆级教程】pwn题如何配置和靶机一样的环境-Pwn-看雪论坛-安全社区|安全招聘|bbs.pediy.com 二进制文件+libc篇准备工作先需要安装两个工具 patchelf123456789sudo apt-get install autoconf automake libtoolgit clone https:&#x2F;&#x2F;gi"><meta name="keywords" content="pwn"><meta name="author" content="Ma9icCR"><meta name="copyright" content="Ma9icCR"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ma9iccr.github.io/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="pwn题如何配置和靶机一样的环境"><meta property="og:url" content="https://ma9iccr.github.io/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/"><meta property="og:site_name" content="Ma9icCR"><meta property="og:description" content="pwn题如何配置和靶机一样的环境转载学习记录： Nameless_a 【保姆级教程】pwn题如何配置和靶机一样的环境-Pwn-看雪论坛-安全社区|安全招聘|bbs.pediy.com 二进制文件+libc篇准备工作先需要安装两个工具 patchelf123456789sudo apt-get install autoconf automake libtoolgit clone https:&#x2F;&#x2F;gi"><meta property="og:image" content="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png"><meta property="article:published_time" content="2022-05-27T00:33:18.000Z"><meta property="article:modified_time" content="2022-05-27T00:39:13.175Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="C语言学习到放弃" href="https://ma9iccr.github.io/2022-07/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%88%B0%E6%94%BE%E5%BC%83/"><link rel="next" title="从0开始的pwn题环境配置" href="https://ma9iccr.github.io/2022-05/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%9A%84pwn%E9%A2%98%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-05-27 08:39:13'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Image</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/navigate/"><i class="fa-fw fas fa-navigate"></i><span> Navigate</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pwn题如何配置和靶机一样的环境"><span class="toc-number">1.</span> <span class="toc-text">pwn题如何配置和靶机一样的环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二进制文件-libc篇"><span class="toc-number">1.1.</span> <span class="toc-text">二进制文件+libc篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.2.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#patchelf"><span class="toc-number">1.3.</span> <span class="toc-text">patchelf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#glibc-all-in-one"><span class="toc-number">1.4.</span> <span class="toc-text">glibc-all-in-one</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体操作"><span class="toc-number">1.5.</span> <span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-先对libc文件来个strings看看版本"><span class="toc-number">1.5.1.</span> <span class="toc-text">(1)先对libc文件来个strings看看版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进入all-in-one-看看有无这个版本"><span class="toc-number">1.5.2.</span> <span class="toc-text">(2)进入all in one 看看有无这个版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）下载2-27-1-5-amd64"><span class="toc-number">1.5.3.</span> <span class="toc-text">（3）下载2.27-1.5_amd64</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-把存在-glibc-lib里的刚下好的文件拖到你exp所在的目录"><span class="toc-number">1.5.4.</span> <span class="toc-text">(4)把存在&#x2F;glibc&#x2F;lib里的刚下好的文件拖到你exp所在的目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-愉快地连接libc和ld"><span class="toc-number">1.5.5.</span> <span class="toc-text">(5)愉快地连接libc和ld</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker篇"><span class="toc-number">1.6.</span> <span class="toc-text">docker篇</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Ma9icCR</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Image</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/navigate/"><i class="fa-fw fas fa-navigate"></i><span> Navigate</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">pwn题如何配置和靶机一样的环境</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2022-05-27 08:33:18"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2022-05-27</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2022-05-27 08:39:13"><i class="fas fa-history fa-fw"></i> 更新于 2022-05-27</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/pwn/">pwn</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="pwn题如何配置和靶机一样的环境"><a href="#pwn题如何配置和靶机一样的环境" class="headerlink" title="pwn题如何配置和靶机一样的环境"></a>pwn题如何配置和靶机一样的环境</h1><p>转载学习记录：</p>
+<p><a href="https://bbs.pediy.com/user-home-943085.htm" target="_blank" rel="noopener">Nameless_a</a></p>
+<p><a href="https://bbs.pediy.com/thread-272653.htm" target="_blank" rel="noopener">【保姆级教程】pwn题如何配置和靶机一样的环境-Pwn-看雪论坛-安全社区|安全招聘|bbs.pediy.com</a></p>
+<h2 id="二进制文件-libc篇"><a href="#二进制文件-libc篇" class="headerlink" title="二进制文件+libc篇"></a>二进制文件+libc篇</h2><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>先需要安装两个工具</p>
+<h2 id="patchelf"><a href="#patchelf" class="headerlink" title="patchelf"></a>patchelf</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install autoconf automake libtool</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/NixOS/patchelf.git</span><br><span class="line"><span class="built_in">cd</span> patchelf</span><br><span class="line">./bootstrap.sh</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make check</span><br><span class="line">sudo make install </span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+
+<h2 id="glibc-all-in-one"><a href="#glibc-all-in-one" class="headerlink" title="glibc-all-in-one"></a>glibc-all-in-one</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/matrix1001/glibc-all-in-one</span><br></pre></td></tr></table></figure>
+
+<p>记得下下来cd到glibc-master目录的时候先运行一下update_list，即：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./update_list</span><br></pre></td></tr></table></figure>
+
+<p>如果发现有些时候list里面的版本下不了了，也可以用这个更新一下列表（然后你就发现绝版了）</p>
+<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h3 id="1-先对libc文件来个strings看看版本"><a href="#1-先对libc文件来个strings看看版本" class="headerlink" title="(1)先对libc文件来个strings看看版本"></a>(1)先对libc文件来个strings看看版本</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings libc-2.27.so | grep ubuntu</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-进入all-in-one-看看有无这个版本"><a href="#2-进入all-in-one-看看有无这个版本" class="headerlink" title="(2)进入all in one 看看有无这个版本"></a>(2)进入all in one 看看有无这个版本</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> glibc</span><br><span class="line">cat list</span><br></pre></td></tr></table></figure>
+
+<p>（glibc是把glibc-all-in-one改过的名字）</p>
+<p>发现绝版了，怎么办？</p>
+<p>就先用1.5，先换上all-in-one里的libc试试，本地能打通远程应该没问题（有些时候会出现本地通了远程通不了的奇怪情况）</p>
+<h3 id="（3）下载2-27-1-5-amd64"><a href="#（3）下载2-27-1-5-amd64" class="headerlink" title="（3）下载2.27-1.5_amd64"></a>（3）下载2.27-1.5_amd64</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./download 2.27-3ubuntu1.5_amd64</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-把存在-glibc-lib里的刚下好的文件拖到你exp所在的目录"><a href="#4-把存在-glibc-lib里的刚下好的文件拖到你exp所在的目录" class="headerlink" title="(4)把存在/glibc/lib里的刚下好的文件拖到你exp所在的目录"></a>(4)把存在/glibc/lib里的刚下好的文件拖到你exp所在的目录</h3><p>（因为./用起来太香了，而且也不用绑定什么奇奇怪怪的东西）</p>
+<h3 id="5-愉快地连接libc和ld"><a href="#5-愉快地连接libc和ld" class="headerlink" title="(5)愉快地连接libc和ld"></a>(5)愉快地连接libc和ld</h3><p>先使用ldd命令看看连接前的情况：</p>
+<p>连接：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">patchelf --<span class="built_in">set</span>-interpreter ./2.27-3ubuntu1.5_amd64/ld-2.27.so ./untidy_note</span><br><span class="line">patchelf --replace-needed libc.so.6./2.27-3ubuntu1.5_amd64/libc-2.27.so ./untidy_note</span><br></pre></td></tr></table></figure>
+
+<p>再用ldd或者直接vmmap看看</p>
+<h2 id="docker篇"><a href="#docker篇" class="headerlink" title="docker篇"></a>docker篇</h2><p>docker一般是会给readme的，但是有些题不太会给（就比如minil2022的mini_bug），那个就是考docker的一些语法，需要自己改一改dockerfile才能搭好环境</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ma9icCR</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ma9iccr.github.io/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/">https://ma9iccr.github.io/2022-05/pwn%E9%A2%98%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%92%8C%E9%9D%B6%E6%9C%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E7%8E%AF%E5%A2%83/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ma9iccr.github.io" target="_blank">Ma9icCR</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/pwn/">pwn</a></div><div class="post_share"><div class="social-share" data-image="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/OIP-C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022-07/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%88%B0%E6%94%BE%E5%BC%83/"><img class="prev-cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/OIP-C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C语言学习到放弃</div></div></a></div><div class="next-post pull-right"><a href="/2022-05/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%9A%84pwn%E9%A2%98%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><img class="next-cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">从0开始的pwn题环境配置</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2022-05/从0开始的pwn题环境配置/" title="从0开始的pwn题环境配置"><img class="relatedPosts_cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="relatedPosts_title">从0开始的pwn题环境配置</div></div></a></div><div class="relatedPosts_item"><a href="/2022-04/PWN入门到入狱-Code/" title="PWN入门到入狱-Code"><img class="relatedPosts_cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-15</div><div class="relatedPosts_title">PWN入门到入狱-Code</div></div></a></div><div class="relatedPosts_item"><a href="/2022-03/PWN入门到入狱-Integer/" title="PWN入门到入狱-Integer"><img class="relatedPosts_cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-28</div><div class="relatedPosts_title">PWN入门到入狱-Integer</div></div></a></div><div class="relatedPosts_item"><a href="/2022-03/PWN入门到入狱-Heap/" title="PWN入门到入狱-Heap"><img class="relatedPosts_cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-28</div><div class="relatedPosts_title">PWN入门到入狱-Heap</div></div></a></div><div class="relatedPosts_item"><a href="/2022-03/PWN入门到入狱-Format/" title="PWN入门到入狱-Format"><img class="relatedPosts_cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-28</div><div class="relatedPosts_title">PWN入门到入狱-Format</div></div></a></div><div class="relatedPosts_item"><a href="/2022-03/PWN入门到入狱-Stack/" title="PWN入门到入狱-Stack"><img class="relatedPosts_cover" data-src="https://ma9ic-image.obs.cn-north-4.myhuaweicloud.com/images/pwn.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-28</div><div class="relatedPosts_title">PWN入门到入狱-Stack</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Ma9icCR</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>
